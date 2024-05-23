@@ -72,9 +72,9 @@ function imageTemplate({ preview, original, description }) {
         <a class="gallery-link" href="large-image.jpg">
           <img
             class="gallery-image"
-            src=${preview}
+            src="${preview}"
             data-source=${original}
-            alt=${description}
+            alt="${description}"
           />
         </a>
       </li>`;
@@ -100,7 +100,7 @@ function handleClickImage(e) {
 function showModal(newSrc) {
   const markup = `<li >
            <img width= 800px
-               src=${newSrc}
+               src="${newSrc}"
            />
           </li>`;
   const instance = basicLightbox.create(markup);
