@@ -64,7 +64,9 @@ const images = [
   },
 ];
 const ulElem = document.querySelector(".gallery");
+
 console.log(ulElem);
+
 function imageTemplate({ preview, original, description }) {
   return ` <li class="gallery-item">
         <a class="gallery-link" href="large-image.jpg">
@@ -82,7 +84,25 @@ function imagesTemplate(arr) {
   return arr.map(imageTemplate).join("\n");
 }
 
-// const template = imageTemplate(images[0]);
-
 const markup = imagesTemplate(images);
 ulElem.innerHTML = markup;
+
+ulElem.addEventListener("click", handleClickImage);
+
+function handleClickImage(e) {
+  e.preventDefault();
+  if (e.target === e.currentTarget) return;
+  const imgElem = e.target.closest("img");
+  const newSrc = imgElem.dataset.source;
+  showModal(newSrc);
+}
+
+function showModal(newSrc) {
+  const markup = `<li >
+           <img width= 800px
+               src=${newSrc}
+           />
+          </li>`;
+  const instance = basicLightbox.create(markup);
+  instance.show();
+}
